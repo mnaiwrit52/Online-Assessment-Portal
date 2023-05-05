@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container-1{
+    height: 100vh;
+}
+
+.container-2{
+    display: flex;
+    position: absolute;
+    width: 40rem;
+    height: 30rem;
+    opacity: 0;
+    pointer-events: none;
+    /* display: none; */
+}
+
+.container-4{
+    height: 15rem;
+}
+
+.container-4 div{
+    text-align: start;
+}
+
+.info-list{
+    height: 25rem;
+    width: 40rem;
+    /* display: none; */
+}
+
+.container-2{
+    transition: all 0.3s ease-in-out;
+}
+
+.container-2.active-info{
+    z-index: 5;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+div.info{
+    font-size: 20px;
+}
+
+.highlight{
+    font-weight: bold;
+}
+
+
+
+

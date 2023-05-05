@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-2{
+    height: 99vh;
+    box-sizing: border-box;
+    /* align-items: center; */
+}
+
+.card-1{
+    /* flex: 0 0 100vw; */
+    margin-right: 1rem;
+    flex: 0 0 49vw;
+    padding: 7rem;
+}
+
+.card-2{
+    flex: 0 0 49vw;
+    padding: 7rem;
+}
+
+.card-title{
+    font-style: italic;
+}
+
+.card-body a{
+    text-decoration: none;
+    color: white;
+    background: #212529;
+    transition: background 0.2s;
+}
+
+.card-body a:hover{
+    background: #3b4249;
+}
+
+.card-body a:active{
+    background: #4f5861;
+}
+

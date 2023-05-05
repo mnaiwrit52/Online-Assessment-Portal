@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-5{
+    height: 100vh;
+}
+
+.info-list{
+    height: 25rem;
+    width: 40rem;
+}
+
+div.info{
+    font-size: 20px;
+}
+
+.highlight{
+    font-weight: bold;
+}
