@@ -7,6 +7,22 @@ body{
     height: 100vh;
 }
 
+.acc-circle{
+    background-color: #fff;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    font-size: large;
+}
+
+.left-part-nav{
+    width: 6rem;
+}
+
+.nav-options{
+    width: 15rem;
+}
+
 .container-2{
     display: flex;
     position: absolute;
@@ -49,6 +65,47 @@ div.info{
     font-weight: bold;
 }
 
+.que-list{
+    display: none;
+    position: absolute;
+    width: 18rem;
+    top: 13rem;
+    left: 5rem;
+}
 
+.que-list.active-que-list{
+    display: block;
+}
 
+.option.selected{
+    background-color: #000;
+    color: white;
+}
 
+.end-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    position: absolute;
+    background: white;
+    padding: 5rem;
+    display: none;
+}
+
+.icon span{
+    font-size: 100px;
+}
+
+.score{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.title{
+    font-size: large;
+}
+
+.end-page.active-end-page{
+    display: flex;
+}

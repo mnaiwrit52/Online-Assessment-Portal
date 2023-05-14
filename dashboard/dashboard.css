@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.acc-circle{
+    background-color: #fff;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    font-size: large;
+}
+
+.left-part-nav{
+    width: 6rem;
+}
+
+.nav-options{
+    width: 15rem;
+}
+
+.sidebar-content button{
+    width: 100%;
+}
+
+.sidebar-content{
+    height: 50rem;
+}
+
+.badge-card .card-body{
+    display: flex;
+    justify-content: start;
+}
+
+.quiz-badge{
+    margin: 0.5rem;
+    width: 7rem;
+    height: 7rem;
+}
+
+.card.opti{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.opti span{
+    font-size: 50px;
+}
