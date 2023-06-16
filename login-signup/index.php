@@ -1,3 +1,45 @@
+<?php
+        $showAlert = false; 
+        $exists = false;
+        // getting all values from the HTML form
+        if(isset($_POST['submit']))
+        {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $pwd = $_POST['pwd'];
+        // database details
+        $host = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "test_db";
+
+        // creating a connection
+        $con = mysqli_connect($host, $username, $password, $dbname);
+
+        // to ensure that the connection is made
+        if (!$con)
+        {
+            die("Connection failed!" . mysqli_connect_error());
+        }
+
+        $str="SELECT email from users WHERE email='$email'";
+	      $result=mysqli_query($con, $str);
+    
+	    if((mysqli_num_rows($result))>0)	
+	    {
+        $exists="Username not available";
+      }
+	    else
+	    {
+        $hash = password_hash($pwd, PASSWORD_DEFAULT);
+        $str="INSERT INTO users (s_no, name, email, pwd) VALUES ('', '$name', '$email', '$hash')";
+        if (mysqli_query($con, $str)) { $showAlert = true; }
+	    }
+
+        mysqli_close($con);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -10,11 +52,22 @@
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!--
-  This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
-  I'm @hk95 on GitHub. Feel free to message me anytime.
--->
+
+<?php
+    
+    if($showAlert) {
+    
+        echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Success!</strong> Your account is now created and you can login.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> '; 
+    }
+        
+    if($exists) {
+        echo '<div class="alert alert-danger alert-dismissible fade show " role="alert">
+                  <strong>Error!</strong> '. $exists.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> ';  
+     }
+?>
 
 <section class="user">
   <div class="user_options-container">
@@ -50,22 +103,23 @@
           </div>
         </form>
       </div>
+
       <div class="user_forms-signup">
         <h2 class="forms_title">Sign Up</h2>
-        <form class="forms_form">
+        <form class="forms_form" method="POST">
           <fieldset class="forms_fieldset">
             <div class="forms_field">
-              <input type="text" placeholder="Full Name" class="forms_field-input" required />
+              <input type="text" name="name" placeholder="Full Name" class="forms_field-input" required />
             </div>
             <div class="forms_field">
-              <input type="email" placeholder="Email" class="forms_field-input" required />
+              <input type="email" name="email" placeholder="Email" class="forms_field-input" required />
             </div>
             <div class="forms_field">
-              <input type="password" placeholder="Password" class="forms_field-input" required />
+              <input type="password" name="pwd" placeholder="Password" class="forms_field-input" required />
             </div>
           </fieldset>
           <div class="forms_buttons">
-            <input type="submit" value="Sign up" class="forms_buttons-action">
+            <input type="submit" name="submit" value="Sign up" class="forms_buttons-action">
           </div>
         </form>
       </div>
