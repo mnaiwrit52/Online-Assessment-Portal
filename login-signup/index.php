@@ -1,4 +1,21 @@
-<?php
+<?php   
+        // database details
+        $host = "localhost";
+        $username = "root";
+        $password = "03052002@Nai";
+        $dbname = "test_db";
+        
+        // creating a connection
+        $con = mysqli_connect($host, $username, $password, $dbname);
+        
+        // to ensure that the connection is made
+        if (!$con)
+        {
+            die("Connection failed!" . mysqli_connect_error());
+        }
+
+        include 'login.php';
+
         $showAlert = false; 
         $exists = false;
         // getting all values from the HTML form
@@ -7,20 +24,6 @@
             $name = $_POST['name'];
             $email = $_POST['email'];
             $pwd = $_POST['pwd'];
-        // database details
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "test_db";
-
-        // creating a connection
-        $con = mysqli_connect($host, $username, $password, $dbname);
-
-        // to ensure that the connection is made
-        if (!$con)
-        {
-            die("Connection failed!" . mysqli_connect_error());
-        }
 
         $str="SELECT email from users WHERE email='$email'";
 	      $result=mysqli_query($con, $str);
@@ -32,7 +35,7 @@
 	    else
 	    {
         $hash = password_hash($pwd, PASSWORD_DEFAULT);
-        $str="INSERT INTO users (s_no, name, email, pwd) VALUES ('', '$name', '$email', '$hash')";
+        $str="INSERT INTO users (name, email, pwd) VALUES ('$name', '$email', '$pwd')";
         if (mysqli_query($con, $str)) { $showAlert = true; }
 	    }
 
@@ -67,6 +70,12 @@
                   <strong>Error!</strong> '. $exists.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div> ';  
      }
+
+     if($nocred){
+      echo '<div class="alert alert-danger alert-dismissible fade show " role="alert">
+                  <strong>Error!</strong> Invalid Username or Password <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> ';
+     }
 ?>
 
 <section class="user">
@@ -85,25 +94,27 @@
       </div>
     </div>
     
+    <!-- Login Form starts -->
     <div class="user_options-forms" id="user_options-forms">
       <div class="user_forms-login">
         <h2 class="forms_title">Login</h2>
-        <form class="forms_form">
+        <form class="forms_form" method="POST">
           <fieldset class="forms_fieldset">
             <div class="forms_field">
-              <input type="email" placeholder="Email" class="forms_field-input" required autofocus />
+              <input type="email" name="email" placeholder="Email" class="forms_field-input" required autofocus />
             </div>
             <div class="forms_field">
-              <input type="password" placeholder="Password" class="forms_field-input" required />
+              <input type="password" name="pwd" placeholder="Password" class="forms_field-input" required />
             </div>
           </fieldset>
           <div class="forms_buttons">
             <button type="button" class="forms_buttons-forgot">Forgot password?</button>
-            <input type="submit" value="Log In" class="forms_buttons-action">
+            <input type="submit" name="login" value="Log In" class="forms_buttons-action">
           </div>
         </form>
       </div>
-
+      
+      <!-- Registration Form Starts -->
       <div class="user_forms-signup">
         <h2 class="forms_title">Sign Up</h2>
         <form class="forms_form" method="POST">
@@ -123,6 +134,8 @@
           </div>
         </form>
       </div>
+      <!-- Registration Form Starts -->
+
     </div>
   </div>
 </section>
